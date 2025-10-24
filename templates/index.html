@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Smart Weather App{% endblock %}
+
+{% block content %}
+<div class="hero-section text-center py-5">
+    <h1 class="display-4 fw-bold mb-4">
+        <i class="bi bi-cloud-sun-fill text-warning"></i>
+        Smart Weather Insights
+    </h1>
+    <p class="lead mb-5">Tailored weather recommendations for farmers and travelers</p>
+</div>
+
+<div class="row g-4 mb-5">
+    <!-- Agriculture Mode Card -->
+    <div class="col-md-6">
+        <div class="card mode-card h-100 shadow-lg border-0">
+            <div class="card-body text-center p-5">
+                <div class="mode-icon mb-4">
+                    <i class="bi bi-flower2 display-1 text-success"></i>
+                </div>
+                <h2 class="card-title mb-3">Agriculture Mode</h2>
+                <p class="card-text text-muted mb-4">
+                    Get crop-specific recommendations, irrigation alerts, and optimal farming activity suggestions based on real-time weather conditions.
+                </p>
+                <ul class="list-unstyled text-start mb-4">
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success"></i> Frost & heat warnings</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success"></i> Spraying conditions</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success"></i> Irrigation recommendations</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success"></i> Disease risk alerts</li>
+                </ul>
+                <a href="/agriculture" class="btn btn-success btn-lg">
+                    <i class="bi bi-arrow-right-circle"></i> Enter Agriculture Mode
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Travel Mode Card -->
+    <div class="col-md-6">
+        <div class="card mode-card h-100 shadow-lg border-0">
+            <div class="card-body text-center p-5">
+                <div class="mode-icon mb-4">
+                    <i class="bi bi-airplane display-1 text-primary"></i>
+                </div>
+                <h2 class="card-title mb-3">Travel Mode</h2>
+                <p class="card-text text-muted mb-4">
+                    Plan your trips with weather-aware packing suggestions, route advisories, and destination forecasts for safe and enjoyable journeys.
+                </p>
+                <ul class="list-unstyled text-start mb-4">
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary"></i> Smart packing lists</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary"></i> Route weather alerts</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary"></i> Activity recommendations</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary"></i> Best travel times</li>
+                </ul>
+                <a href="/travel" class="btn btn-primary btn-lg">
+                    <i class="bi bi-arrow-right-circle"></i> Enter Travel Mode
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="row g-4 mt-5">
+    <div class="col-12">
+        <h2 class="text-center mb-4">Why Choose Smart Weather App?</h2>
+    </div>
+    <div class="col-md-4">
+        <div class="feature-card text-center p-4">
+            <i class="bi bi-geo-alt-fill display-4 text-info mb-3"></i>
+            <h4>Location-Specific</h4>
+            <p class="text-muted">Real-time weather data for your exact location with auto-detection</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="feature-card text-center p-4">
+            <i class="bi bi-graph-up display-4 text-warning mb-3"></i>
+            <h4>Smart Analytics</h4>
+            <p class="text-muted">Interactive visualizations and trend analysis for better planning</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="feature-card text-center p-4">
+            <i class="bi bi-bell-fill display-4 text-danger mb-3"></i>
+            <h4>Actionable Alerts</h4>
+            <p class="text-muted">Timely warnings and recommendations to reduce losses</p>
+        </div>
+    </div>
+</div>
+
+<!-- How It Works -->
+<div class="row mt-5 py-5 bg-light rounded">
+    <div class="col-12">
+        <h2 class="text-center mb-4">How It Works</h2>
+    </div>
+    <div class="col-md-3 text-center">
+        <div class="step-number mb-3">1</div>
+        <h5>Choose Your Mode</h5>
+        <p class="text-muted">Select Agriculture or Travel based on your needs</p>
+    </div>
+    <div class="col-md-3 text-center">
+        <div class="step-number mb-3">2</div>
+        <h5>Set Location</h5>
+        <p class="text-muted">Auto-detect or manually enter your location</p>
+    </div>
+    <div class="col-md-3 text-center">
+        <div class="step-number mb-3">3</div>
+        <h5>Get Insights</h5>
+        <p class="text-muted">Receive tailored weather forecasts and recommendations</p>
+    </div>
+    <div class="col-md-3 text-center">
+        <div class="step-number mb-3">4</div>
+        <h5>Take Action</h5>
+        <p class="text-muted">Follow smart suggestions to optimize your activities</p>
+    </div>
+</div>
+{% endblock %}

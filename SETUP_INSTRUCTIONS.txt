@@ -1,0 +1,40 @@
+# SETUP INSTRUCTIONS - Smart Weather App
+
+## Follow these steps to get your app running:
+
+### 1. Get Your FREE OpenWeatherMap API Key
+   - Visit: https://openweathermap.org/api
+   - Click "Sign Up" and create a free account
+   - After login, go to: https://home.openweathermap.org/api_keys
+   - Copy your API key
+
+### 2. Configure This File
+   - Rename this file from SETUP_INSTRUCTIONS.txt to .env
+   - Replace "your_api_key_here" below with your actual API key
+   - Save the file
+
+### 3. Install Dependencies
+   Open terminal/command prompt in this folder and run:
+   pip install -r requirements.txt
+
+### 4. Run the App
+   python app.py
+
+### 5. Open Browser
+   Go to: http://localhost:5000
+
+---
+
+# OpenWeatherMap API Key
+# Get your free API key from: https://openweathermap.org/api
+OPENWEATHER_API_KEY=your_api_key_here
+
+# Optional: IP Info API Key for better location detection
+# Get from: https://ipinfo.io/
+IPINFO_API_KEY=
+
+# Flask Configuration
+FLASK_SECRET_KEY=your-secret-key-change-in-production
+DEBUG=True
+HOST=0.0.0.0
+PORT=5000

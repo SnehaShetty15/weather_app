@@ -1,0 +1,257 @@
+/* Custom Styles for Smart Weather App */
+
+:root {
+    --primary-color: #0d6efd;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+main.container {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Navigation */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    margin: -2rem -2rem 2rem -2rem;
+    padding: 3rem 2rem !important;
+}
+
+/* Mode Cards */
+.mode-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.mode-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15) !important;
+}
+
+.mode-icon i {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Feature Cards */
+.feature-card {
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: scale(1.05);
+}
+
+/* Step Numbers */
+.step-number {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+/* Weather Card */
+.weather-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+}
+
+.weather-card .card-title,
+.weather-card .text-muted {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.weather-details .text-muted {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Alert Styles */
+.alert-item {
+    border-left: 4px solid;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+}
+
+.alert-item.critical {
+    border-color: #dc3545;
+    background-color: #f8d7da;
+}
+
+.alert-item.high {
+    border-color: #fd7e14;
+    background-color: #fff3cd;
+}
+
+.alert-item.medium {
+    border-color: #ffc107;
+    background-color: #fff3cd;
+}
+
+.alert-item.info {
+    border-color: #0dcaf0;
+    background-color: #cff4fc;
+}
+
+/* Cards */
+.card {
+    border-radius: 10px;
+    border: none;
+}
+
+.card-header {
+    border-radius: 10px 10px 0 0 !important;
+    font-weight: 600;
+}
+
+/* Tables */
+.table {
+    font-size: 0.95rem;
+}
+
+.table thead th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    border-bottom: 2px solid #dee2e6;
+}
+
+/* Loading Spinner */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Location Results */
+.location-result {
+    padding: 0.75rem;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.location-result:hover {
+    background-color: #f8f9fa;
+    border-color: var(--primary-color);
+}
+
+/* Packing List */
+.packing-item {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    margin: 0.25rem;
+    font-size: 0.9rem;
+}
+
+/* Page Header */
+.page-header {
+    border-bottom: 3px solid;
+    padding-bottom: 1rem;
+    border-image: linear-gradient(90deg, #667eea 0%, #764ba2 100%) 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    main.container {
+        padding: 1rem;
+    }
+    
+    .hero-section {
+        margin: -1rem -1rem 1rem -1rem;
+        padding: 2rem 1rem !important;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Chart Container */
+#temperatureChart,
+#rainfallChart {
+    min-height: 400px;
+    width: 100%;
+    display: block !important;
+    position: relative;
+}
+
+#temperatureChart > div,
+#rainfallChart > div {
+    width: 100% !important;
+    height: 400px !important;
+}
+
+.plotly-graph-div {
+    width: 100% !important;
+    height: 400px !important;
+}
+
+/* Badge Styles */
+.outlook-excellent {
+    background-color: #198754 !important;
+}
+
+.outlook-good {
+    background-color: #20c997 !important;
+}
+
+.outlook-fair {
+    background-color: #ffc107 !important;
+}
+
+.outlook-poor {
+    background-color: #dc3545 !important;
+}

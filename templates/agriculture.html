@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block title %}Agriculture Mode - Smart Weather App{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="page-header mb-4">
+            <h1 class="display-5">
+                <i class="bi bi-flower2 text-success"></i> Agriculture Mode
+            </h1>
+            <p class="lead">Weather insights and recommendations for farming</p>
+        </div>
+    </div>
+</div>
+
+<!-- Location Search -->
+<div class="row mb-4">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title mb-3">
+                    <i class="bi bi-geo-alt"></i> Select Location
+                </h5>
+                <div class="input-group">
+                    <input type="text" id="locationSearch" class="form-control" 
+                           placeholder="Enter city name or use auto-detect">
+                    <button class="btn btn-outline-primary" id="autoDetectBtn">
+                        <i class="bi bi-crosshair"></i> Auto-Detect
+                    </button>
+                    <button class="btn btn-primary" id="searchBtn">
+                        <i class="bi bi-search"></i> Search
+                    </button>
+                </div>
+                <div id="locationResults" class="mt-2"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm" id="currentLocationCard" style="display: none;">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Current Location</h6>
+                <p class="mb-0" id="currentLocationText"><i class="bi bi-geo-fill"></i> <span></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Spinner -->
+<div id="loadingSpinner" class="text-center py-5" style="display: none;">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3">Fetching weather data...</p>
+</div>
+
+<!-- Weather Dashboard -->
+<div id="weatherDashboard" style="display: none;">
+    <!-- Current Weather -->
+    <div class="row mb-4">
+        <div class="col-lg-4">
+            <div class="card weather-card shadow-lg">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Current Weather</h5>
+                    <div class="weather-icon my-3">
+                        <img id="weatherIcon" src="" alt="Weather" style="width: 100px;">
+                    </div>
+                    <h2 class="display-3 mb-0" id="temperature"></h2>
+                    <p class="text-muted" id="weatherDescription"></p>
+                    <div class="weather-details mt-3">
+                        <div class="row text-start">
+                            <div class="col-6 mb-2">
+                                <small class="text-muted">Feels Like</small>
+                                <p class="mb-0" id="feelsLike"></p>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <small class="text-muted">Humidity</small>
+                                <p class="mb-0" id="humidity"></p>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <small class="text-muted">Wind Speed</small>
+                                <p class="mb-0" id="windSpeed"></p>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <small class="text-muted">Pressure</small>
+                                <p class="mb-0" id="pressure"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Alerts -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0"><i class="bi bi-exclamation-triangle"></i> Weather Alerts</h5>
+                </div>
+                <div class="card-body" id="alertsContainer">
+                    <p class="text-muted">No alerts at this time</p>
+                </div>
+            </div>
+            
+            <!-- Suitable Activities -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="bi bi-list-check"></i> Suitable Farm Activities</h5>
+                </div>
+                <div class="card-body" id="activitiesContainer">
+                    <p class="text-muted">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recommendations -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="bi bi-lightbulb"></i> Recommendations</h5>
+                </div>
+                <div class="card-body" id="recommendationsContainer">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Loading recommendations...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="bi bi-clipboard-check"></i> Today's Tasks</h5>
+                </div>
+                <div class="card-body" id="tasksContainer">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Loading tasks...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-graph-up"></i> Weather Forecast</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-tabs mb-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#tempChart">Temperature</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#rainChart">Rainfall</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tempChart" class="tab-pane fade show active">
+                            <div id="temperatureChart" style="min-height: 400px;">
+                                <div class="text-center py-5">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Loading chart...</span>
+                                    </div>
+                                    <p class="mt-2 text-muted">Loading temperature chart...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="rainChart" class="tab-pane fade">
+                            <div id="rainfallChart" style="min-height: 400px;">
+                                <div class="text-center py-5">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Loading chart...</span>
+                                    </div>
+                                    <p class="mt-2 text-muted">Loading rainfall chart...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forecast Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-calendar-week"></i> 5-Day Forecast</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="forecastTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Conditions</th>
+                                    <th>Min Temp</th>
+                                    <th>Max Temp</th>
+                                    <th>Rainfall</th>
+                                    <th>Wind</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/agriculture.js') }}"></script>
+{% endblock %}
