@@ -24,7 +24,7 @@ python --version
 ### Step 3: Set Up Environment
 ```bash
 # Navigate to project folder
-cd c:\Users\vsneh\Downloads\weather
+cd c:\Users\Downloads\weather
 
 # Create virtual environment (recommended)
 python -m venv venv
